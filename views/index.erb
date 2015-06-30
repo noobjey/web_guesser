@@ -1,5 +1,11 @@
 <html>
-<head></head>
+<head>
+  <style>
+    body {
+      <%= background %>
+    }
+  </style>
+</head>
 
   <body>
     <br/>
@@ -10,7 +16,7 @@
     <br/>
     <br/>
 
-    <p hidden><%= secret_number %></p>
+    <p hidden><%= settings.secret_number %></p>
     <p><%= message %></p>
 
     <form>

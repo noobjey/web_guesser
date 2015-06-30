@@ -5,13 +5,13 @@ set :secret_number, Random.rand(100)
 
 get '/' do
   guess   = params["guess"]
-  message =''
 
   if !guess.nil?
     message = check_guess(guess)
+    background = background(guess)
   end
 
-  erb :index, :locals => { secret_number: settings.secret_number, message: message }
+  erb :index, :locals => { secret_number: settings.secret_number, message: message, background: background }
 
 end
 
@@ -48,5 +48,17 @@ def check_guess(guess)
     "To Low"
   else
     ''
+  end
+end
+
+def background(guess)
+  if correct?(guess)
+    "background: green;"
+  elsif way_to_high?(guess) || way_to_low?(guess)
+    "background: red;"
+  elsif to_high?(guess) || to_low?(guess)
+    "background: #ff6666;"
+  else
+    "background: white;"
   end
 end
